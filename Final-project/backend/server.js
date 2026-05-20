@@ -1,18 +1,57 @@
 const express = require("express");
+
 const cors = require("cors");
+
 const dotenv = require("dotenv");
+
 const connectdb = require("./config/db");
+
+
+// dotenv config
+
 dotenv.config();
-const app = express();
-app.use(cors());
-app.use(express.json());
+
+
+// connect mongodb
+
 connectdb();
-app.get("/",(req,res)=>{
-    res.send("api is working");
+
+
+// app initialize
+
+const app = express();
+
+
+// middleware
+
+app.use(cors());
+
+app.use(express.json());
+
+
+// default route
+
+app.get("/", (req, res) => {
+
+  res.send("API is Working");
+
 });
-app.use('/api/courses',require("./routes/courseroutes"));
+
+
+// routes
+
+app.use("/api/courses", require("./routes/courseroutes"));
+
+
+// port
+
 const port = process.env.PORT || 5600;
 
-app.listen(port,()=>{
-    console.log("server is running port 5600");
+
+// server start
+
+app.listen(port, () => {
+
+  console.log(`Server Running On Port ${port}`);
+
 });

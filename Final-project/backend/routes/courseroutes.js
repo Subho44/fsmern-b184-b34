@@ -1,11 +1,33 @@
 const express = require("express");
+
 const router = express.Router();
-const ctrl = require("../controllers/courseController")
 
-router.post("/",ctrl.addcourse);
-router.get("/",ctrl.viewcourse);
-router.get("/:id",ctrl.viewonecourse);
-router.put("/:id",ctrl.updatecourse);
-router.delete("/:id",ctrl.deletecourse);
+const ctrl = require("../controllers/courseController");
 
-module.exports =router;
+
+// add course
+
+router.post("/", ctrl.addcourse);
+
+
+// view all course
+
+router.get("/", ctrl.viewcourse);
+
+
+// single course
+
+router.get("/:id", ctrl.viewonecourse);
+
+
+// update course
+
+router.put("/:id", ctrl.updatecourse);
+
+
+// delete course
+
+router.delete("/:id", ctrl.deletecourse);
+
+
+module.exports = router;
