@@ -41,6 +41,7 @@ app.get("/", (req, res) => {
 // routes
 
 app.use("/api/courses", require("./routes/courseroutes"));
+app.use("/api/auth", require("./routes/authroutes"));
 
 
 // port
