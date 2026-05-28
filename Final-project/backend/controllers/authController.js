@@ -13,7 +13,7 @@ exports.register = async (req,res)=> {
             name,
             email,
             password:hashedpswd,
-            role
+            role: role ||"user",
         });
         res.json({message:"register successfully",user});
     } catch(err) {
@@ -25,7 +25,7 @@ exports.register = async (req,res)=> {
 exports.login = async (req,res)=> {
     try {
         const {email,password} = req.body;
-        const olduser = await User.findOne({email});
+        const user = await User.findOne({email});
         const checkpassword = await bcrypt.compare(password,user.password);
 
        const token = jwt.sign({
@@ -37,7 +37,7 @@ exports.login = async (req,res)=> {
     );
 
        
-        res.json({message:"LOGIN successfully",token});
+        res.json({message:"LOGIN successfully",token,user});
     } catch(err) {
         console.error(err);
     }

@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
-
+import { useAuth } from "../context/AuthContext";
 function EditCourse() {
   const { id } = useParams();
   const navigate = useNavigate();
-
+  const {token} = useAuth();
   const [form, setForm] = useState({
     title: "",
     price: "",
